@@ -1,0 +1,33 @@
+* OVERVIEW
+At the time of writing there were no graphite packages for Debian so
+installations had to be done from sources. This module isn't much more than a
+bunch of execs wrapping the manual installation process.
+
+I created this module to use the web interface against a collectd/rrd
+installation so I've only dealt with graphite-web and whisper, there's no
+support for carbon at this time.
+
+There is also a "patches" directory that ships a diff to make the rrd support
+working. The class could be improved to support different patches that can be
+selectively picked by the user.
+
+Credit to vvuksan for his graphite-ganglia puppet manifest that got me started.
+https://github.com/vvuksan/ganglia-misc/tree/d65de0a2b670fbe8e996823ed88a0300da6e47a8/graphite
+
+To use it just:
+  
+  Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin" }
+
+  include graphite::buildenv
+  include graphite::whisper
+  include graphite::web
+
+Variables of what is installed and where is defined in graphite::params
+
+* TODO
+Some stuff that certainly eneds work
+- put revision to install was in a configurable variable
+- all parameters could be overridden with user variables
+- fiddle with the django settings to use different databases and set other options
+- manage apache/webserver vhost in a decent way
+- figure out how to make the sqlite initialization unattended
