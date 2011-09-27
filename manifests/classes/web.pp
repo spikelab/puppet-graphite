@@ -32,7 +32,7 @@ class graphite::web {
     user => $graphite::params::web_user,
   }
 
-  file { "/etc/apache2/sites-enabled/graphite.conf":
+  file { "$apacheconf_dir/graphite.conf":
     source => "puppet:///modules/graphite/graphite-apache-vhost.conf" ,
     subscribe => Exec["install-webapp"],
   }

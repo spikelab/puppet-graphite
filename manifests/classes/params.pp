@@ -16,5 +16,10 @@ class graphite::params {
    ubuntu => "www-data",
    centos => "apache"
   }
+  $apacheconf_dir = $operatingsystem ? {
+   ubuntu => "/etc/apache2/sites-enabled",
+   centos => "/etc/httpd/conf.d"
+  }
+
  
 }
